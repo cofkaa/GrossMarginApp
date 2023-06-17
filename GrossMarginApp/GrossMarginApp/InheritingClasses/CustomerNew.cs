@@ -1,4 +1,6 @@
-﻿namespace GrossMarginApp.InheritingClasses
+﻿using GrossMarginApp.BaseClasses;
+
+namespace GrossMarginApp.InheritingClasses
 {
     public class CustomerNew : CustomerBase
     {
@@ -12,11 +14,8 @@
         }
         public void SaveNewCustomerInFile()
         {
-            CreateDirectoryIfNotExists();
-            using (var writer = File.AppendText(customersFilePath))
-            {
-                writer.WriteLine(this.Id);
-            }
+            Utils.WriteValueInFile(dirName, customersFilePath, this.Id);
+
             using (var writer = File.CreateText(this.CustomerFilePath))
             {
                 writer.WriteLine($"Id={this.Id}");
