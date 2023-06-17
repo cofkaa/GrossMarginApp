@@ -10,9 +10,9 @@
         float GrossMargin { get; }
         float PercGrossMargin { get; }
 
-        public void AddSalesInvoicesValue(float value) { }
-        public void AddTransportCosts(float value) { }
-        public void AddProductionCosts(float value) { }
-        public void AddVariableCosts(float value) { }
+        void AddSalesInvoicesValue(float value);
+        void AddTransportCosts(float value);
+        void AddProductionCosts(float value);
+        void AddVariableCosts(float value);
     }
 }

@@ -2,16 +2,16 @@
 {
     public interface IValues
     {
-        public string DirName { get; }
-        public string ValuesFilePath { get; }
-        public List<float> Values { get; }
-        public float Sum { get; }
-        public int Count { get; }
+        string DirName { get; }
+        string ValuesFilePath { get; }
+        List<float> Values { get; }
+        float Sum { get; }
+        int Count { get; }
 
-        public void WriteValueInFile(string value) { }
+        void WriteValueInFile(string value);
 
-        public void WriteValueInFile(float value) { }
+        void WriteValueInFile(float value);
 
-        public void ReadValuesFromFile() { }
+        void ReadValuesFromFile();
     }
 }

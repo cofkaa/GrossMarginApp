@@ -11,7 +11,7 @@ namespace GrossMarginApp.Tests
             CustomerNew customer = new CustomerNew();
             var numberOfCustomers = CustomerNew.LastCustomerNo();
             // act
-            customer.SaveNewCustomerInFile();
+            customer.SaveCustomerDataInFile();
             numberOfCustomers++;
             // assert
             Assert.AreEqual(numberOfCustomers, CustomerNew.LastCustomerNo());
@@ -24,7 +24,7 @@ namespace GrossMarginApp.Tests
             CustomerNew customer = new CustomerNew();
 
             // act
-            customer.SaveNewCustomerInFile();
+            customer.SaveCustomerDataInFile();
 
             // assert
             Assert.AreEqual(true, File.Exists(customer.CustomerFilePath));

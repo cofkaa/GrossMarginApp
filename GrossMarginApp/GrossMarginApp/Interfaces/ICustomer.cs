@@ -1,7 +1,10 @@
-﻿namespace GrossMarginApp.Interfaces
+﻿using GrossMarginApp.BaseClasses;
+
+namespace GrossMarginApp.Interfaces
 {
     public interface ICustomer
     {
+        string CustomerFilePath { get; }
         int Id { get; }
         string Name { get; }
         string Email { get; }
@@ -11,5 +14,10 @@
         string State { get; }
         string PostalCode { get; }
         string Country { get; }
+        ValuesBase SalesInvoices { get; }
+        ValuesBase TransportCosts { get; }
+        ValuesBase ProductionCosts { get; }
+        ValuesBase VariableCosts { get; }
+        void SaveCustomerDataInFile();
     }
 }

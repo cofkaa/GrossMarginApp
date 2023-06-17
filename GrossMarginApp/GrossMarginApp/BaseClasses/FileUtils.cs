@@ -42,5 +42,43 @@
             }
             return values;
         }
+
+        public static List<int> ReadIntValuesFromFile(string filePath)
+        {
+            string line;
+            List<int> values = new List<int>();
+            if (File.Exists(filePath))
+            {
+                using (var reader = File.OpenText(filePath))
+                {
+                    do
+                    {
+                        line = reader.ReadLine();
+                        if (line != null && int.TryParse(line, out int value))
+                            values.Add(value);
+                    } while (line != null);
+                }
+            }
+            return values;
+        }
+
+        public static List<string> ReadProperiesFromFile(string filePath)
+        {
+            string line;
+            List<string> values = new List<string>();
+            if (File.Exists(filePath))
+            {
+                using (var reader = File.OpenText(filePath))
+                {
+                    do
+                    {
+                        line = reader.ReadLine();
+                        if (line != null && line.Split("=").Length == 2)
+                            values.Add(line);
+                    } while (line != null);
+                }
+            }
+            return values;
+        }
     }
 }
