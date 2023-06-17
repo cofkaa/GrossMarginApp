@@ -14,7 +14,7 @@ namespace GrossMarginApp.InheritingClasses
         }
         public void SaveNewCustomerInFile()
         {
-            Utils.WriteValueInFile(dirName, customersFilePath, this.Id);
+            FileUtils.WriteValueInFile(dirName, customersFilePath, this.Id);
 
             using (var writer = File.CreateText(this.CustomerFilePath))
             {
