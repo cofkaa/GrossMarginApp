@@ -18,6 +18,14 @@ namespace GrossMarginApp.Interfaces
         ValuesBase TransportCosts { get; }
         ValuesBase ProductionCosts { get; }
         ValuesBase VariableCosts { get; }
+        void SetName(string name);
+        void SetEmail(string email);
+        void SetPhoneNumber(string phoneNumber);
+        void SetAddress(string address);
+        void SetCity(string city);
+        void SetState(string state);
+        void SetPostalCode(string postalCode);
+        void SetCountry(string country);
         void SaveCustomerDataInFile();
     }
 }

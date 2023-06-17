@@ -10,14 +10,14 @@ namespace GrossMarginApp.BaseClasses
         protected const string customersFilePath = $"{dirName}\\{customersfileName}";
         public string CustomerFilePath => $"{dirName}\\{Id}_{customerfileName}";
         public int Id { get; private set; }
-        public string Name { get; protected set; }
-        public string Email { get; protected set; }
-        public string PhoneNumber { get; protected set; }
-        public string Address { get; protected set; }
-        public string City { get; protected set; }
-        public string State { get; protected set; }
-        public string PostalCode { get; protected set; }
-        public string Country { get; protected set; }
+        public string Name { get; private set; }
+        public string Email { get; private set; }
+        public string PhoneNumber { get; private set; }
+        public string Address { get; private set; }
+        public string City { get; private set; }
+        public string State { get; private set; }
+        public string PostalCode { get; private set; }
+        public string Country { get; private set; }
         public ValuesBase SalesInvoices { get; private set; }
         public ValuesBase TransportCosts { get; private set; }
         public ValuesBase ProductionCosts { get; private set; }
@@ -37,6 +37,38 @@ namespace GrossMarginApp.BaseClasses
             this.TransportCosts = new ValuesBase(dirName, $"{Id}_TransportCosts");
             this.ProductionCosts = new ValuesBase(dirName, $"{Id}_ProductionCosts");
             this.VariableCosts = new ValuesBase(dirName, $"{Id}_VariableCosts");
+        }
+        public void SetName(string name)
+        {
+            this.Name = name;
+        }
+        public void SetEmail(string email)
+        {
+            this.Email = email;
+        }
+        public void SetPhoneNumber(string phoneNumber)
+        {
+            this.PhoneNumber = phoneNumber;
+        }
+        public void SetAddress(string address)
+        {
+            this.Address = address;
+        }
+        public void SetCity(string city)
+        {
+            this.City = city;
+        }
+        public void SetState(string state)
+        {
+            this.State = state;
+        }
+        public void SetPostalCode(string postalCode)
+        {
+            this.PostalCode = postalCode;
+        }
+        public void SetCountry(string country)
+        {
+            this.Country = country;
         }
         public virtual void SaveCustomerDataInFile()
         {
