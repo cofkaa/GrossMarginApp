@@ -10,7 +10,7 @@ namespace GrossMarginApp.DataModels
         public float VariableCosts { get; private set; }
         public float TotalCosts => TransportCosts + ProductionCosts + VariableCosts;
         public float GrossMargin => SalesInvoicesValue - TotalCosts;
-        public float PercGrossMargin => SalesInvoicesValue != 0 ? GrossMargin / SalesInvoicesValue : 0;
+        public float PercGrossMargin => SalesInvoicesValue != 0 ? GrossMargin / SalesInvoicesValue * 100 : 0;
 
         public SalesValues()
         {
