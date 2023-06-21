@@ -4,6 +4,8 @@ namespace GrossMarginApp.BaseClasses
 {
     public class ValuesBase : IValues
     {
+        public delegate void ValueSavedDelegate(object sender, EventArgs args, float value);
+        public event ValueSavedDelegate ValueSaved;
         private const string fileNameSuffix = "Values.txt";
         public string DirName { get; private set; }
         public string ValuesFilePath { get; private set; }
@@ -28,6 +30,10 @@ namespace GrossMarginApp.BaseClasses
         public void WriteValueInFile(float value)
         {
             FileUtils.WriteValueInFile(this.DirName, this.ValuesFilePath, value);
+            if (this.ValueSaved != null)
+            {
+                this.ValueSaved(this, new EventArgs(), value);
+            }
         }
 
         public void ReadValuesFromFile()

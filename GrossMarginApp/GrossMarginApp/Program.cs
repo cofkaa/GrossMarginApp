@@ -41,7 +41,7 @@ public class Program
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine(e.Message);
+                            Console.WriteLine($"**bład: {e.Message}");
                         }
 
                     }
@@ -49,9 +49,19 @@ public class Program
             }
             if (customer != null)
             {
+                customer.CustomerSaved += WriteMessageCustomerSaved;
                 customer = ShowSelectedCustomer(customer);
             }
         }
+    }
+
+    private static void WriteMessageCustomerSaved(object sender, EventArgs args, int id)
+    {
+        Console.WriteLine($"-- Poprawnie zapisano klienta {id}");
+    }
+    private static void WriteMessageValueSaved(object sender, EventArgs args, float value)
+    {
+        Console.WriteLine($"-- Zapisano wartość {value}");
     }
     private static void ShowCustomersList()
     {
@@ -114,6 +124,10 @@ public class Program
     private static void ShowCustomerValues(int customerId)
     {
         var customer = new CustomerExisting(customerId);
+        customer.SalesInvoices.ValueSaved += WriteMessageValueSaved;
+        customer.ProductionCosts.ValueSaved += WriteMessageValueSaved;
+        customer.TransportCosts.ValueSaved += WriteMessageValueSaved;
+        customer.VariableCosts.ValueSaved += WriteMessageValueSaved;
         var input = "";
         var inputValue = "";
 
@@ -147,25 +161,32 @@ public class Program
                     inputValue = Console.ReadLine();
                     break;
                 default:
-                    Console.WriteLine("Błędny wybór.");
+                    Console.WriteLine("**Błędny wybór.");
                     break;
             }
             if (!string.IsNullOrEmpty(inputValue))
             {
-                switch (input.ToUpper().Trim())
+                try
                 {
-                    case MenuUtils.addSalesInvoice:
-                        customer.AddSalesInvoiceValue(inputValue);
-                        break;
-                    case MenuUtils.addProductionCost:
-                        customer.AddProductionCostValue(inputValue);
-                        break;
-                    case MenuUtils.addTransportCost:
-                        customer.AddTransportCostValue(inputValue);
-                        break;
-                    case MenuUtils.addVariableCost:
-                        customer.AddVariableCostValue(inputValue);
-                        break;
+                    switch (input.ToUpper().Trim())
+                    {
+                        case MenuUtils.addSalesInvoice:
+                            customer.AddSalesInvoiceValue(inputValue);
+                            break;
+                        case MenuUtils.addProductionCost:
+                            customer.AddProductionCostValue(inputValue);
+                            break;
+                        case MenuUtils.addTransportCost:
+                            customer.AddTransportCostValue(inputValue);
+                            break;
+                        case MenuUtils.addVariableCost:
+                            customer.AddVariableCostValue(inputValue);
+                            break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"**błąd: {e.Message}");
                 }
             }
         }

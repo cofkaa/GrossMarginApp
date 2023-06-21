@@ -4,6 +4,8 @@ namespace GrossMarginApp.BaseClasses
 {
     public abstract class CustomerBase : ICustomer
     {
+        public delegate void CustomerSavedDelegate(object sender, EventArgs args, int id);
+        public event CustomerSavedDelegate CustomerSaved;
         private const string customersfileName = "0_Customers.txt";
         private const string customerfileName = "Customer.txt";
         protected const string dirName = "Data";
@@ -83,6 +85,10 @@ namespace GrossMarginApp.BaseClasses
                 writer.WriteLine($"State={this.State}");
                 writer.WriteLine($"PostalCode={this.PostalCode}");
                 writer.WriteLine($"Country={this.Country}");
+            }
+            if (this.CustomerSaved != null)
+            {
+                this.CustomerSaved(this, new EventArgs(), this.Id);
             }
         }
 
